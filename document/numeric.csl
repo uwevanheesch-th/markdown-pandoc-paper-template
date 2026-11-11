@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" default-locale="en-US">
+  <info>
+    <title>Numeric (Template)</title>
+    <id>numeric-template</id>
+    <link href="http://purl.org/net/xbiblio/csl" rel="self"/>
+    <author>
+      <name>Template</name>
+    </author>
+    <category citation-format="numeric"/>
+    <updated>2026-01-01T00:00:00+00:00</updated>
+  </info>
+  <locale xml:lang="en">
+    <terms>
+      <term name="et-al">et al.</term>
+      <term name="and">and</term>
+    </terms>
+  </locale>
+  <macro name="author">
+    <names variable="author">
+      <name and="text" delimiter=", " initialize-with=". "/>
+      <label form="short" prefix=", " text-case="capitalize-first"/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="title">
+    <choose>
+      <if type="book thesis" match="any">
+        <text variable="title" font-style="italic"/>
+      </if>
+      <else>
+        <text variable="title"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="container">
+    <choose>
+      <if type="article-journal" match="any">
+        <group delimiter=", ">
+          <text variable="container-title" font-style="italic"/>
+          <group delimiter=", ">
+            <text variable="volume"/>
+            <text variable="issue" prefix="no. "/>
+          </group>
+          <text variable="page"/>
+        </group>
+      </if>
+      <else-if type="paper-conference chapter" match="any">
+        <group delimiter=", ">
+          <text variable="container-title" font-style="italic"/>
+          <text variable="page"/>
+        </group>
+      </else-if>
+      <else>
+        <text variable="container-title" font-style="italic"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="publisher">
+    <group delimiter=". ">
+      <text variable="publisher"/>
+      <text variable="genre"/>
+      <text variable="publisher-place"/>
+    </group>
+  </macro>
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+  <bibliography second-field-align="flush" entry-spacing="0" line-spacing="1">
+    <layout suffix=".">
+      <text variable="citation-number" prefix="[" suffix="]"/>
+      <group delimiter=". ">
+        <text macro="author"/>
+        <date variable="issued" prefix="(" suffix=")">
+          <date-part name="year"/>
+        </date>
+        <text macro="title"/>
+        <text macro="container"/>
+        <text macro="publisher"/>
+      </group>
+      <text variable="DOI" prefix=". https://doi.org/"/>
+    </layout>
+  </bibliography>
+</style>
